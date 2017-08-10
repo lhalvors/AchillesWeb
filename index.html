@@ -73,6 +73,7 @@
 							<li onclick="updateReport('conditioneras');">Condition Eras</li>
 							<!-- ko if: (datasource() && datasource().cdmVersion) == 5 -->
 							<li onclick="updateReport('measurement');">Measurement</li>
+							<li onclick="updateReport('sb_fact');">Fact</li>
 							<!-- /ko -->
 							<li onclick="updateReport('observations');">Observations</li>
 							<li onclick="updateReport('drugeras');">Drug Eras</li>
@@ -1406,6 +1407,125 @@
 			</div>
 		</div>
 	</div>
-</body>
+
+	<div id="reportFacts" class="report">
+		<div class="reportTitle">Facts</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Fact Prevalence
+					</div>
+					<div class="panel-body">
+						<div class="col-sm-12">
+							<ul class="nav nav-tabs" id="myTab">
+								<li class="active"><a href="#sb_fact-treemap-panel">Treemap</a>
+								</li>
+								<li><a href="#sb_fact-table-panel">Table</a>
+								</li>
+							</ul>
+							<div id='content' class="tab-content">
+								<div class="tab-pane active" id="sb_fact-treemap-panel">
+									<div id="treemap_container">
+										<div class="treemap_zoomtarget"></div>
+									</div>
+									<div class="treemap_legend">Box Size: Prevalence, Color: Records per Person (Blue to Orange = Low to High), Use Ctrl-Click to Zoom, Alt-Click to Reset Zoom</div>
+								</div>
+								<div class="tab-pane" id="sb_fact-table-panel">
+									<table id="sb_fact_table" class="display">
+										<thead>
+											<tr>
+												<th>Concept Id</th>
+												<th>Level 4</th>
+												<th>Level 3</th>
+												<th>Level 2</th>
+												<th>Fact</th>
+												<th>Person Count</th>
+												<th>Prevalence</th>
+												<th>Records per Person</th>
+											</tr>
+										</thead>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="reportFactDrilldown" class="hidden reportDrilldown">
+			<div id="factDrilldownTitle" class="reportTitle"></div>
+			<div class="row">
+				<div class="col-sm-12">
+					<div id="panelFactPrevalence" class="panel panel-default">
+						<div class="panel-heading">
+							Fact Prevalence
+						</div>
+						<div class="panel-body">
+							<div class="drilldown" id="trellisLinePlot"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<div id="panelFactPrevalenceByMonth" class="panel panel-default">
+						<div class="panel-heading">
+							Fact Prevalence by Month
+						</div>
+						<div class="panel-body">
+							<div class="drilldown" id="factPrevalenceByMonth"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					<div id="panelFactByType" class="panel panel-default">
+						<div class="panel-heading">
+							Fact by Type
+						</div>
+						<div class="panel-body">
+							<div class="drilldown" id="factsByType"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							Age at First Occurrence
+						</div>
+						<div class="panel-body">
+							<div class="drilldown" id="ageAtFirstOccurrence"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							Fact Records by Unit
+						</div>
+						<div class="panel-body">
+							<div class="drilldown" id="recordsByUnit"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							Fact Value Distribution
+						</div>
+						<div class="panel-body">
+							<div class="drilldown" id="factValues"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	</body>
 
 </html>

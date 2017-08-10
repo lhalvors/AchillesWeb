@@ -11,6 +11,7 @@ define(function (require) {
 	var reportDeath = require("./reports/death");
 	var reportAchillesHeel = require("./reports/achilles_heel");
 	var reportMeasurement = require("./reports/measurement");
+	var reportSBFact = require("./reports/sb_fact");
 
 	var module = {
 		ConditionOccurrence: reportConditionOccurrence,
@@ -23,7 +24,8 @@ define(function (require) {
 		VisitOccurrence: reportVisitOccurrence,
 		Death: reportDeath,
 		AchillesHeel: reportAchillesHeel,
-		Measurement: reportMeasurement
+		Measurement: reportMeasurement,
+		SB_Fact: reportSBFact
 	};
 
 	return module;

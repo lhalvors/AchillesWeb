@@ -186,6 +186,7 @@
 			curl(["jnj/chart", "common"], function (jnj_chart, common) {
 				d3.selectAll("#reportObservationPeriods #agebygender svg").remove();
 				var agegenderboxplot = new jnj_chart.boxplot();
+				result.AGE_BY_GENDER = common.normalizeDataframe(result.AGE_BY_GENDER);
 				var agData = result.AGE_BY_GENDER.CATEGORY
 					.map(function (d, i) {
 						var item = {
@@ -598,6 +599,17 @@
 					report = 'measurement';
 				});				
 
+				this.get('#/:name/sb_fact', function (context) {
+					$('.report').hide();
+					viewModel.datasource(viewModel.datasources.filter(function (d) {
+						return d.name == this.params['name'];
+					}, this)[0]);
+
+					reports.SB_Fact.render(viewModel.datasource());
+					$('#reportFact').show();
+					report = 'sb_fact';
+				});	
+
 			});
 
 			$(function () {
@@ -621,13 +633,14 @@
 	});
 })();
 
-var	simpledata = [ "achillesheel", "condition_treemap", "conditionera_treemap", "dashboard", "datadensity", "death", "drug_treemap", "drugera_treemap", "measurement_treemap", "observation_treemap", "observationperiod", "person", "procedure_treemap", "visit_treemap"];
+var	simpledata = [ "achillesheel", "condition_treemap", "conditionera_treemap", "dashboard", "datadensity", "death", "drug_treemap", "drugera_treemap", "measurement_treemap", "fact_treemap", "observation_treemap", "observationperiod", "person", "procedure_treemap", "visit_treemap"];
 var collectionFormats = {
 	"conditioneras" : "condition_{id}.json",
 	"conditions" 	: "condition_{id}.json",
 	"drugeras"		: "drug_{id}.json",
 	"drugs"			: "drug_{id}.json",
 	"measurements" : "measurement_{id}.json",
+	"sb_facts" : "sb_fact_{id}.json",
 	"observations" 	: "observation_{id}.json",
 	"procedures"	: "procedure_{id}.json",
 	"visits"		: "visit_{id}.json"
